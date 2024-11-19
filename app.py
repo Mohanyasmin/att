@@ -1,5 +1,4 @@
 import streamlit as st
-from streamlit_option_menu import option_menu
 from PIL import Image, ImageOps, ImageDraw
 import os
 import logging
@@ -45,22 +44,16 @@ def main_menu(username):
     else:
         st.error("Image file not found")
         logger.error("Image file not found at path: %s", img_path)
-    
-    st.write(f"Welcome, {username}!")
-    selected = option_menu(
-        menu_title="MAIN MENU",  # required
-        options=["STUDENT INFO", "ATTENDENCE"],  # required
-        icons=["home", "envelope"],  # optional
-        menu_icon="cast",  # optional
-        default_index=0,  # optional
-    )
-    logger.info("Option menu displayed with selected option: %s", selected)
 
-    # Display different content based on the selection
-    if selected == "Home":
-        st.write("Welcome to the Home Page")
-    elif selected == "Contact":
-        st.write("Contact Information")
+    st.write(f"Welcome, {username}!")
+
+    # Display buttons for different options
+    if st.button("STUDENT INFO"):
+        st.write("Displaying Student Info...")
+        # Add content or functionality for Student Info here
+    if st.button("ATTENDENCE"):
+        st.write("Displaying Attendance...")
+        # Add content or functionality for Attendance here
 
 # Streamlit UI
 def main():
@@ -72,7 +65,7 @@ def main():
         st.sidebar.title("STUDENT LOGIN")
         username = st.sidebar.text_input("Username").lower()
         password = st.sidebar.text_input("Password", type="password")
-        
+
         if st.sidebar.button("Login"):
             if check_login(username, password):
                 st.sidebar.success(f"Welcome, {username}!")
@@ -83,9 +76,11 @@ def main():
             else:
                 st.sidebar.error("Invalid username or password. Please try again.")
                 logger.warning("Invalid login attempt for user %s", username)
-    
+
     # Call the sidebar
     sidebar()
 
 if __name__ == "__main__":
     main()
+
+
