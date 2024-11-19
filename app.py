@@ -32,7 +32,7 @@ def make_rounded_image(img):
 # Function for main menu
 def main_menu(username):
     # Check if the file exists
-    img_path = r"C:/Users/god/OneDrive/Desktop/project/attendence/logo.jpeg"
+    img_path = "logo.jpeg"
     if os.path.exists(img_path):
         img = Image.open(img_path)
         img = img.resize((150, 150))  # Resize the image to a smaller size
