@@ -1,1 +1,3 @@
-streamlit
+echo "streamlit" > requirements.txt
+echo "streamlit-option-menu" >> requirements.txt
+echo "Pillow" >> requirements.txt
